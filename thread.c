@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchampli <rchampli@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: rchampli <rchampli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:54:18 by rchampli          #+#    #+#             */
-/*   Updated: 2022/05/05 20:49:00 by rchampli         ###   ########.fr       */
+/*   Updated: 2022/05/06 17:37:51 by rchampli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ void	*is_dead(void *data)
 	{
 		pthread_mutex_unlock(&ph->pa->time_eat);
 		pthread_mutex_unlock(&ph->pa->finish);
-		pthread_mutex_lock(&ph->pa->write_mutex);
-		write_status("died\n", ph);
-		pthread_mutex_unlock(&ph->pa->write_mutex);
+		write_status("died\n", ph, &ph->pa->write_mutex);
 		check_death(ph, 1);
 	}
 	pthread_mutex_unlock(&ph->pa->time_eat);

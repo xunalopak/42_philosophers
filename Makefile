@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rchampli <rchampli@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: rchampli <rchampli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/05 20:50:26 by rchampli          #+#    #+#              #
-#    Updated: 2022/05/05 20:59:16 by rchampli         ###   ########.fr        #
+#    Updated: 2022/05/06 18:19:36 by rchampli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ HEADER = philo.h
 
 CC = gcc
 
-FLAGS = -Werror -Wall -Wextra -g -pthread
+FLAGS = -Werror -Wall -Wextra -O3 -pthread
 
 SRCS = game.c\
 		init_and_parse.c\
@@ -31,6 +31,8 @@ all : $(NAME)
 
 $(NAME) : $(OBJS) $(HEADER)
 		@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+%.o: %.c $(HEADER)
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean :
 		@rm -fr $(OBJS)
